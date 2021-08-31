@@ -7,6 +7,7 @@ const regions = require("./regions.json")
 const regionsru = require("./regionsrus.json")
 const mongoose = require("mongoose")
 const ProfileModel = require("./models/profile")
+const tgboturl = process.env.TGBOTURL
 const mongouser = process.env.MONGO_USER
 const mongopass = process.env.MONGO_PASS
 const axios = require("axios")
@@ -352,4 +353,5 @@ function backButton(place, lang) {
   return [{ text: botmsg[lang].go_back, callback_data: place }]
 }
 
-bot.launch()
+bot.telegram.setWebhook(tgboturl)
+bot.startWebhook("/bot", null, 3000)
