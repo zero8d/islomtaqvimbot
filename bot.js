@@ -354,4 +354,4 @@ function backButton(place, lang) {
 }
 
 bot.telegram.setWebhook(tgboturl)
-bot.startWebhook("/bot", null, port)
+bot.startWebhook("/", null, port)
