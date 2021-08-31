@@ -12,7 +12,7 @@ const mongouser = process.env.MONGO_USER
 const mongopass = process.env.MONGO_PASS
 const axios = require("axios")
 const connectionString = `mongodb+srv://${mongouser}:${mongopass}@cluster0.ylloi.mongodb.net/prayertimes?retryWrites=true&w=majority`
-
+const port = process.env.PORT
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -354,4 +354,4 @@ function backButton(place, lang) {
 }
 
 bot.telegram.setWebhook(tgboturl)
-bot.startWebhook("/bot", null, 3000)
+bot.startWebhook("/bot", null, port)
