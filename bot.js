@@ -352,8 +352,8 @@ function backButton(place, lang) {
   return [{ text: botmsg[lang].go_back, callback_data: place }]
 }
 
-bot.telegram.setWebhook(`${tgboturl}/bot${token}`)
-bot.startWebhook(`/bot${token}`, null, port)
+// bot.telegram.setWebhook(`${tgboturl}/bot${token}`)
+// bot.startWebhook(`/bot${token}`, null, port)
 
 bot.launch({
   webhook: {
