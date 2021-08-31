@@ -1,4 +1,3 @@
-require("dotenv").config()
 const { Telegraf } = require("telegraf")
 const token = process.env.BOTTOKEN
 const bot = new Telegraf(token)
