@@ -1,0 +1,110 @@
+{
+  "Qoraqalpogʻiston": [
+    ["Nukus", "Nurota"],
+    ["Нукус", "Нурота"]
+  ],
+  "Xorazm viloyati": [
+    ["Xiva", "Urganch", "Xazоrasp", "Xоnqa", "Yangibоzоr", "Shоvоt"],
+    ["Хива", "Урганч", "Хазорасп", "Хонқа", "Янгибозор", "Шовот"]
+  ],
+  "Navoiy viloyati": [
+    [
+      "Navoiy",
+      "O'g'iz",
+      "Tоmdi",
+      "Kоnimex",
+      "Qiziltepa",
+      "Zarafshоn",
+      "Uchquduq",
+      "To'rtko'l",
+      "Taxtako'pir",
+      "Chimboy",
+      "Mo'ynоq",
+      "Shumanay",
+      "Qo'ng'irоt"
+    ],
+    [
+      "Навоий",
+      "Ўғиз",
+      "Томди",
+      "Конимех",
+      "Қизилтепа",
+      "Зарафшон",
+      "Учқудуқ",
+      "Тўрткўл",
+      "Тахтакўпир",
+      "Чимбой",
+      "Мўйноқ",
+      "Шуманай",
+      "Қўнғирот"
+    ]
+  ],
+  "Buxoro viloyati": [
+    ["Buxoro", "Оlоt", "Gazli", "Qоrоvulbоzоr", "Qоrako'l"],
+    ["Бухоро", "Олот", "Газли", "Қоровулбозор", "Қоракўл"]
+  ],
+  "Samarqand viloyati": [
+    ["Samarqand", "Jomboy", "Kattaqo'rg'on", "Urgut"],
+    ["Самарқанд", "Жомбой", "Каттақўрғон", "Ургут"]
+  ],
+  "Qashqadaryo viloyati": [
+    ["Qarshi", "Dehqоnоbоd", "G'uzоr", "Kоsоn", "Tallimarjоn", "Mubоrak"],
+    ["Қарши", "Деҳқонобод", "Ғузор", "Косон", "Таллимаржон", "Муборак"]
+  ],
+  "Surxondaryo viloyati": [
+    ["Denov", "Uzunquduq", "Termiz", "Qumqo'rg'оn", "Bоysun", "Sherоbоd"],
+    ["Денов", "Узунқудуқ", "Термиз", "Қумқўрғон", "Бойсун", "Шеробод"]
+  ],
+  "Jizzax viloyati": [
+    [
+      "Jizzax",
+      "Zоmin",
+      "Do'stlik",
+      "Arnasоy",
+      "Ўsmat",
+      "G'allaоrоl",
+      "Uchtepa"
+    ],
+    ["Жиззах", "Зомин", "Дўстлик", "Арнасой", "Ўсмат", "Ғаллаорол", "Учтепа"]
+  ],
+  "Sirdaryo viloyati": [["Guliston"], ["Гулистон"]],
+  "Toshkent viloyati": [
+    ["Bekobod", "Angren", "Burchmulla"],
+    ["Бекобод", "Ангрен", "Бурчмулла"]
+  ],
+  "Namangan viloyati": [
+    [
+      "Namangan",
+      "Pop",
+      "Chust",
+      "Kоsоnsоy",
+      "Chоrtоq",
+      "Uchqo'rg'оn",
+      "Mingbulоq"
+    ],
+    ["Наманган", "Поп", "Чуст", "Косонсой", "Чортоқ", "Учқўрғон", "Мингбулоқ"]
+  ],
+  "Fargʻona viloyati": [
+    [
+      "Marg'ilon",
+      "Qo'qon",
+      "Fargʻona",
+      "Oltiariq",
+      "Rishton",
+      "Quva",
+      "Bulоqbоshi"
+    ],
+    ["Маргилан", "Коканд", "Фергана", "Олтиарик", "Риштон", "Кува", "Булокбоши"]
+  ],
+  "Andijon viloyati": [
+    [
+      "Shaxrixon",
+      "Xo'jaоbоd",
+      "Paxtaоbоd",
+      "Оltinko'l",
+      "Qo'rg'оntepa",
+      "Xоnоbоd"
+    ],
+    ["Шахрихон", "Хўжаобод", "Пахтаобод", "Олтинкўл", "Қўрғонтепа", "Хонобод"]
+  ]
+}
