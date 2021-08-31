@@ -354,3 +354,14 @@ function backButton(place, lang) {
 
 bot.telegram.setWebhook(`${tgboturl}/bot${token}`)
 bot.startWebhook(`/bot${token}`, null, port)
+
+bot.launch({
+  webhook: {
+    domain: `${tgboturl}/bot${token}`,
+    port,
+  },
+})
+
+// Enable graceful stop
+process.once("SIGINT", () => bot.stop("SIGINT"))
+process.once("SIGTERM", () => bot.stop("SIGTERM"))
