@@ -3,4 +3,4 @@
 
 # Telegram bot
 
-t.me/islomtaqvimbot
+https://t.me/islomtaqvimbot
