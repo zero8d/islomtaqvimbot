@@ -119,6 +119,9 @@ bot.action(/province (.+)/, async ctx => {
       },
       { upsert: true }
     )
+    await axios.get(
+      "https://islomtaqvimstats.herokuapp.com/secret/api/dbupdated"
+    )
   } catch (err) {
     bot.telegram.sendMessage(logChatId, JSON.stringify(err.message))
   }
@@ -172,7 +175,6 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
   ${botmsg[lang].respm.shom}: ${resData[i].times.shom_iftor}
   ${botmsg[lang].respm.hufton}: ${resData[i].times.hufton}
     `
-
     datas.push(data)
   }
   let resp = datas.join("\n")
@@ -265,7 +267,7 @@ bot.hears([botmsg.uz.change_lang, botmsg.ru.change_lang], ctx => {
   })
 })
 
-bot.action(["clang uz", "clang ru"], ctx => {
+bot.action(["clang uz", "clang ru"], async ctx => {
   const lang = "clang uz" === ctx.match[0] ? "uz" : "ru"
   const chatId = ctx.callbackQuery.from.id
   const callbackQueryId = ctx.callbackQuery.id
@@ -273,6 +275,7 @@ bot.action(["clang uz", "clang ru"], ctx => {
   bot.telegram.answerCbQuery(callbackQueryId, botmsg[lang].lang_changed + lang)
   bot.telegram.deleteMessage(chatId, ctx.callbackQuery.message.message_id)
   sendCommands(chatId, lang)
+  await axios.get()
 })
 
 bot.on("text", ctx => {
