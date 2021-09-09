@@ -34,12 +34,22 @@ const botmsg = {
     respm: {
       region: "Территория",
       date: "Дата",
+      weekday: "День недели",
       tong: "Фаджр (Сухур)",
       quyosh: "Шурук",
       peshin: "Зухр",
       asr: "Аср",
       shom: "Магриб (Ифтар)",
       hufton: "Иша",
+      weekdays: {
+        dushanba: "Понедельник",
+        seshanba: "Вторник",
+        chorshanba: "Среда",
+        payshanba: "Четверг",
+        juma: "Пятница",
+        shanba: "Суббота",
+        yakshanba: "Воскресенье",
+      },
     },
   },
   uz: {
@@ -58,12 +68,22 @@ const botmsg = {
     respm: {
       region: "Hudud",
       date: "Sana",
+      weekday: "Hafta kuni",
       tong: "Tong (Saharlik)",
       quyosh: "Quyosh chiqishi",
       peshin: "Peshin",
       asr: "Asr",
       shom: "Shom (Iftorlik)",
       hufton: "Hufton",
+      weekdays: {
+        dushanba: "Dushanba",
+        seshanba: "Seshanba",
+        chorshanba: "Chorshanba",
+        payshanba: "Payshanba",
+        juma: "Juma",
+        shanba: "Shanba",
+        yakshanba: "Yakshanba",
+      },
     },
   },
 }
@@ -119,9 +139,6 @@ bot.action(/province (.+)/, async ctx => {
       },
       { upsert: true }
     )
-    await axios.get(
-      "https://islomtaqvimstats.herokuapp.com/secret/api/dbupdated"
-    )
   } catch (err) {
     bot.telegram.sendMessage(logChatId, JSON.stringify(err.message))
   }
@@ -156,6 +173,9 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
     `
   ${botmsg[lang].respm.region}: ${resData[0].region}
   ${botmsg[lang].respm.date}: ${date.split(",")[0]}
+  ${botmsg[lang].respm.weekday}: ${
+      botmsg[lang].respm.weekdays[resData[0].weekday]
+    }
   ${botmsg[lang].respm.tong}: ${resData[0].times.tong_saharlik}
   ${botmsg[lang].respm.quyosh}: ${resData[0].times.quyosh}
   ${botmsg[lang].respm.peshin}: ${resData[0].times.peshin}
@@ -168,6 +188,10 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
   for (let i = 1; i < resData.length; i++) {
     date = resData[i].date.split(",")[0]
     const data = `
+  ${botmsg[lang].respm.date}: ${resData[i].date.split(",")[0]}
+  ${botmsg[lang].respm.weekday}: ${
+      botmsg[lang].respm.weekdays[resData[0].weekday]
+    }
   ${botmsg[lang].respm.tong}: ${resData[i].times.tong_saharlik}
   ${botmsg[lang].respm.quyosh}: ${resData[i].times.quyosh}
   ${botmsg[lang].respm.peshin}: ${resData[i].times.peshin}
@@ -235,7 +259,7 @@ bot.hears([botmsg.uz.today, botmsg.ru.today], async ctx => {
   const resMessage = `
   ${botmsg[lang].respm.region}: ${resData.region}
   ${botmsg[lang].respm.date}: ${date}
-
+  ${botmsg[lang].respm.weekday}: ${botmsg.respm.weekdays[resData.weekday]}
   ${botmsg[lang].respm.tong}: ${resData.times.tong_saharlik}
   
   ${botmsg[lang].respm.quyosh}: ${resData.times.quyosh}
@@ -254,7 +278,6 @@ bot.hears([botmsg.uz.today, botmsg.ru.today], async ctx => {
 })
 
 bot.hears([botmsg.uz.change_lang, botmsg.ru.change_lang], ctx => {
-  const lang = ctx.match[0] === botmsg.uz.change_lang ? "uz" : "ru"
   ctx.reply("Kerakli tilni tanlang: \n\nВыбрать язык:", {
     reply_markup: {
       inline_keyboard: [
@@ -300,8 +323,6 @@ function chooseLang(ctx) {
 }
 
 function selectRegion(ctx, lang, backB) {
-  //const chatId = ctx.callbackQuery.from.id
-
   const region = Object.keys(regions)
   const regionru = Object.keys(regionsru)
   const reg = [region, regionru]
@@ -321,7 +342,6 @@ function selectRegion(ctx, lang, backB) {
 
 function buttons(region, alias, lang) {
   let sum = []
-
   let reg = lang === "uz" ? region[0] : region[1]
   region = region[0]
   let cbData = alias ?? "province"
@@ -354,9 +374,6 @@ function sendCommands(chatId, lang) {
 function backButton(place, lang) {
   return [{ text: botmsg[lang].go_back, callback_data: place }]
 }
-
-// bot.telegram.setWebhook(`${tgboturl}/bot${token}`)
-// bot.startWebhook(`/bot${token}`, null, port)
 
 bot.launch({
   webhook: {
