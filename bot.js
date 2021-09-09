@@ -190,7 +190,7 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
     const data = `
   ${botmsg[lang].respm.date}: ${resData[i].date.split(",")[0]}
   ${botmsg[lang].respm.weekday}: ${
-      botmsg[lang].respm.weekdays[resData[0].weekday]
+      botmsg[lang].respm.weekdays[resData[i].weekday]
     }
   ${botmsg[lang].respm.tong}: ${resData[i].times.tong_saharlik}
   ${botmsg[lang].respm.quyosh}: ${resData[i].times.quyosh}
@@ -259,7 +259,7 @@ bot.hears([botmsg.uz.today, botmsg.ru.today], async ctx => {
   const resMessage = `
   ${botmsg[lang].respm.region}: ${resData.region}
   ${botmsg[lang].respm.date}: ${date}
-  ${botmsg[lang].respm.weekday}: ${botmsg.respm.weekdays[resData.weekday]}
+  ${botmsg[lang].respm.weekday}: ${botmsg[lang].respm.weekdays[resData.weekday]}
   ${botmsg[lang].respm.tong}: ${resData.times.tong_saharlik}
   
   ${botmsg[lang].respm.quyosh}: ${resData.times.quyosh}
