@@ -260,7 +260,9 @@ bot.hears([botmsg.uz.today, botmsg.ru.today], async ctx => {
   const resMessage = `
   ${botmsg[lang].respm.region}: ${resData.region}
   ${botmsg[lang].respm.date}: ${date}
-  ${botmsg[lang].respm.weekday}: ${botmsg[lang].respm.weekdays[resData.weekday]}
+  ${botmsg[lang].respm.weekday}: ${
+    botmsg[lang].respm.weekdays[resData.weekday.toLowerCase()]
+  }
   ${botmsg[lang].respm.tong}: ${resData.times.tong_saharlik}
   
   ${botmsg[lang].respm.quyosh}: ${resData.times.quyosh}
