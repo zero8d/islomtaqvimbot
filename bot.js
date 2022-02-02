@@ -376,13 +376,13 @@ function backButton(place, lang) {
   return [{ text: botmsg[lang].go_back, callback_data: place }]
 }
 
-// bot.launch({
-//   webhook: {
-//     domain: `${tgboturl}/bot${token}`,
-//     port,
-//   },
-// })
-bot.launch()
+bot.launch({
+  webhook: {
+    domain: `${tgboturl}/bot${token}`,
+    port,
+  },
+})
+// bot.launch()
 // Enable graceful stop
 process.once('SIGINT', () => bot.stop('SIGINT'))
 process.once('SIGTERM', () => bot.stop('SIGTERM'))
