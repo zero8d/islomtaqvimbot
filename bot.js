@@ -1,15 +1,16 @@
-const { Telegraf } = require("telegraf")
+require('dotenv').config()
+const { Telegraf } = require('telegraf')
 const token = process.env.BOTTOKEN
 const bot = new Telegraf(token)
 const logChatId = process.env.LOGCHATID
-const regions = require("./regions.json")
-const regionsru = require("./regionsrus.json")
-const mongoose = require("mongoose")
-const ProfileModel = require("./models/profile")
+const regions = require('./regions.json')
+const regionsru = require('./regionsrus.json')
+const mongoose = require('mongoose')
+const ProfileModel = require('./models/profile')
 const tgboturl = process.env.TGBOTURL
 const mongouser = process.env.MONGO_USER
 const mongopass = process.env.MONGO_PASS
-const axios = require("axios")
+const axios = require('axios')
 const connectionString = `mongodb+srv://${mongouser}:${mongopass}@cluster0.ylloi.mongodb.net/prayertimes?retryWrites=true&w=majority`
 const port = process.env.PORT
 mongoose.connect(connectionString, {
@@ -19,86 +20,86 @@ mongoose.connect(connectionString, {
 
 const botmsg = {
   ru: {
-    choose_region: "Выберите свой регион",
-    region_saved: "Ваша территория сохранена, ваша территория: ",
-    tashkent_city: "Город Ташкент",
-    settings: "Настройки",
-    change_region: "Изменить область 📍",
-    change_lang: "Сменить язык",
-    lang_changed: "Ваш язык изменился. язык по вашему выбору: ",
-    today: "Сегодня",
-    week: "На неделю",
-    go_back: "🔙 Назад",
-    command: "Выбрать",
-    go_home: "Главное меню",
+    choose_region: 'Выберите свой регион',
+    region_saved: 'Ваша территория сохранена, ваша территория: ',
+    tashkent_city: 'Город Ташкент',
+    settings: 'Настройки',
+    change_region: 'Изменить область 📍',
+    change_lang: 'Сменить язык',
+    lang_changed: 'Ваш язык изменился. язык по вашему выбору: ',
+    today: 'Сегодня',
+    week: 'На неделю',
+    go_back: '🔙 Назад',
+    command: 'Выбрать',
+    go_home: 'Главное меню',
     respm: {
-      region: "Территория",
-      date: "Дата",
-      weekday: "День недели",
-      tong: "Фаджр (Сухур)",
-      quyosh: "Шурук",
-      peshin: "Зухр",
-      asr: "Аср",
-      shom: "Магриб (Ифтар)",
-      hufton: "Иша",
+      region: 'Территория',
+      date: 'Дата',
+      weekday: 'День недели',
+      tong: 'Фаджр (Сухур)',
+      quyosh: 'Шурук',
+      peshin: 'Зухр',
+      asr: 'Аср',
+      shom: 'Магриб (Ифтар)',
+      hufton: 'Иша',
       weekdays: {
-        dushanba: "Понедельник",
-        seshanba: "Вторник",
-        chorshanba: "Среда",
-        payshanba: "Четверг",
-        juma: "Пятница",
-        shanba: "Суббота",
-        yakshanba: "Воскресенье",
+        dushanba: 'Понедельник',
+        seshanba: 'Вторник',
+        chorshanba: 'Среда',
+        payshanba: 'Четверг',
+        juma: 'Пятница',
+        shanba: 'Суббота',
+        yakshanba: 'Воскресенье',
       },
     },
   },
   uz: {
-    choose_region: "Hududingizni tanlang.",
-    region_saved: "Hudidingiz saqlandi, sizning hududingiz: ",
-    tashkent_city: "Toshkent shaxri",
-    settings: "Sozlamalar",
+    choose_region: 'Hududingizni tanlang.',
+    region_saved: 'Hudidingiz saqlandi, sizning hududingiz: ',
+    tashkent_city: 'Toshkent shaxri',
+    settings: 'Sozlamalar',
     change_region: "Hududni o'zgartirish 📍",
     change_lang: "Tilni o'zgartirish. 🧾",
     lang_changed: "Tilingiz o'zgartirildi siz tanlagan til: ",
-    today: "Bugun",
-    week: "Bir haftalik",
-    go_back: "🔙 Orqaga qaytish",
-    command: "Buyruq berishingiz mumkin.",
-    go_home: "Bosh menyu 🏠",
+    today: 'Bugun',
+    week: 'Bir haftalik',
+    go_back: '🔙 Orqaga qaytish',
+    command: 'Buyruq berishingiz mumkin.',
+    go_home: 'Bosh menyu 🏠',
     respm: {
-      region: "Hudud",
-      date: "Sana",
-      weekday: "Hafta kuni",
-      tong: "Tong (Saharlik)",
-      quyosh: "Quyosh chiqishi",
-      peshin: "Peshin",
-      asr: "Asr",
-      shom: "Shom (Iftorlik)",
-      hufton: "Hufton",
+      region: 'Hudud',
+      date: 'Sana',
+      weekday: 'Hafta kuni',
+      tong: 'Tong (Saharlik)',
+      quyosh: 'Quyosh chiqishi',
+      peshin: 'Peshin',
+      asr: 'Asr',
+      shom: 'Shom (Iftorlik)',
+      hufton: 'Hufton',
       weekdays: {
-        dushanba: "Dushanba",
-        seshanba: "Seshanba",
-        chorshanba: "Chorshanba",
-        payshanba: "Payshanba",
-        juma: "Juma",
-        shanba: "Shanba",
-        yakshanba: "Yakshanba",
+        dushanba: 'Dushanba',
+        seshanba: 'Seshanba',
+        chorshanba: 'Chorshanba',
+        payshanba: 'Payshanba',
+        juma: 'Juma',
+        shanba: 'Shanba',
+        yakshanba: 'Yakshanba',
       },
     },
   },
 }
 
-bot.action("Bekor qilish", ctx => ctx.deleteMessage())
+bot.action('Bekor qilish', ctx => ctx.deleteMessage())
 
-bot.command("start", ctx => chooseLang(ctx))
+bot.command('start', ctx => chooseLang(ctx))
 
-bot.action("choose lang", ctx => {
+bot.action('choose lang', ctx => {
   ctx.deleteMessage(ctx.callbackQuery.message.message_id)
   chooseLang(ctx)
 })
 
-bot.action(["lang uz", "lang ru"], async ctx => {
-  const lang = ctx.match[0] === "lang ru" ? "ru" : "uz"
+bot.action(['lang uz', 'lang ru'], async ctx => {
+  const lang = ctx.match[0] === 'lang ru' ? 'ru' : 'uz'
   selectRegion(ctx, lang)
   ctx.answerCbQuery()
   ctx.deleteMessage(ctx.callbackQuery.message.message_id)
@@ -106,12 +107,12 @@ bot.action(["lang uz", "lang ru"], async ctx => {
 
 bot.action(/region (.+)/, ctx => {
   const callbackQueryId = ctx.callbackQuery.id
-  const data = ctx.match[1].split(",")
+  const data = ctx.match[1].split(',')
   const region = data[0]
   const lang = data[1]
   const provinces = regions[region]
 
-  const keyBoard = buttons(provinces, "province", lang)
+  const keyBoard = buttons(provinces, 'province', lang)
 
   keyBoard.push(backButton(`lang ${lang}`, lang))
   ctx.reply(botmsg[lang].choose_region, {
@@ -124,7 +125,7 @@ bot.action(/region (.+)/, ctx => {
 })
 
 bot.action(/province (.+)/, async ctx => {
-  const data = ctx.match[1].split(",")
+  const data = ctx.match[1].split(',')
   const lang = data[1]
   const province = data[0]
   const callbackQueryId = ctx.callbackQuery.id
@@ -151,14 +152,14 @@ bot.action(/province (.+)/, async ctx => {
 })
 
 bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
-  const lang = ctx.match[0] === botmsg.uz.week ? "uz" : "ru"
+  const lang = ctx.match[0] === botmsg.uz.week ? 'uz' : 'ru'
   const chatId = ctx.message.from.id
   const { region } = await ProfileModel.findOne(
     { user_id: chatId },
     { _id: 0, lang: 0 }
   )
   let resData = await axios.get(
-    "https://namozvaqti.herokuapp.com/api/present/week/",
+    'https://namozvaqti.herokuapp.com/api/present/week/',
     {
       params: {
         region,
@@ -172,7 +173,7 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
   let datas = [
     `
   ${botmsg[lang].respm.region}: ${resData[0].region}
-  ${botmsg[lang].respm.date}: ${date.split(",")[0]}
+  ${botmsg[lang].respm.date}: ${date.split(',')[0]}
   ${botmsg[lang].respm.weekday}: ${
       botmsg[lang].respm.weekdays[resData[0].weekday]
     }
@@ -186,9 +187,9 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
   ]
 
   for (let i = 1; i < resData.length; i++) {
-    date = resData[i].date.split(",")[0]
+    date = resData[i].date.split(',')[0]
     const data = `
-  ${botmsg[lang].respm.date}: ${resData[i].date.split(",")[0]}
+  ${botmsg[lang].respm.date}: ${resData[i].date.split(',')[0]}
   ${botmsg[lang].respm.weekday}: ${
       botmsg[lang].respm.weekdays[resData[i].weekday]
     }
@@ -201,12 +202,12 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
     `
     datas.push(data)
   }
-  let resp = datas.join("\n")
+  let resp = datas.join('\n')
   ctx.reply(resp)
 })
 
-bot.hears(["Sozlamalar", "Настройки"], ctx => {
-  const lang = ctx.match[0] === "Sozlamalar" ? "uz" : "ru"
+bot.hears(['Sozlamalar', 'Настройки'], ctx => {
+  const lang = ctx.match[0] === 'Sozlamalar' ? 'uz' : 'ru'
   ctx.reply(ctx.match[0], {
     reply_markup: {
       keyboard: [
@@ -220,24 +221,24 @@ bot.hears(["Sozlamalar", "Настройки"], ctx => {
   })
 })
 
-bot.hears(["Hududni o'zgartirish 📍", "Изменить область 📍"], ctx => {
-  const lang = ctx.match[0] === "Hududni o'zgartirish 📍" ? "uz" : "ru"
+bot.hears(["Hududni o'zgartirish 📍", 'Изменить область 📍'], ctx => {
+  const lang = ctx.match[0] === "Hududni o'zgartirish 📍" ? 'uz' : 'ru'
   selectRegion(ctx, lang, true)
   ctx.deleteMessage()
 })
 
-bot.action("Select region", ctx => {
+bot.action('Select region', ctx => {
   selectRegion(ctx)
   ctx.answerCbQuery()
 })
 
 bot.hears([botmsg.uz.go_home, botmsg.ru.go_home], ctx => {
-  const lang = ctx.message.text === botmsg.uz.go_home ? "uz" : "ru"
+  const lang = ctx.message.text === botmsg.uz.go_home ? 'uz' : 'ru'
   const chatId = ctx.message.chat.id
   sendCommands(chatId, lang)
 })
 bot.hears([botmsg.uz.today, botmsg.ru.today], async ctx => {
-  const lang = ctx.match[0] === botmsg.uz.today ? "uz" : "ru"
+  const lang = ctx.match[0] === botmsg.uz.today ? 'uz' : 'ru'
   // const date = new Date()
   // const month = date.getMonth() + 1
   // const day = date.getDate()
@@ -274,24 +275,24 @@ bot.hears([botmsg.uz.today, botmsg.ru.today], async ctx => {
   
   `
 
-  bot.telegram.sendMessage(chatId, resMessage, { parse_mode: "Markdown" })
+  bot.telegram.sendMessage(chatId, resMessage, { parse_mode: 'Markdown' })
 })
 
 bot.hears([botmsg.uz.change_lang, botmsg.ru.change_lang], ctx => {
-  ctx.reply("Kerakli tilni tanlang: \n\nВыбрать язык:", {
+  ctx.reply('Kerakli tilni tanlang: \n\nВыбрать язык:', {
     reply_markup: {
       inline_keyboard: [
         [
-          { text: "Uzbek", callback_data: "clang uz" },
-          { text: "Русский", callback_data: "clang ru" },
+          { text: 'Uzbek', callback_data: 'clang uz' },
+          { text: 'Русский', callback_data: 'clang ru' },
         ],
       ],
     },
   })
 })
 
-bot.action(["clang uz", "clang ru"], async ctx => {
-  const lang = "clang uz" === ctx.match[0] ? "uz" : "ru"
+bot.action(['clang uz', 'clang ru'], async ctx => {
+  const lang = 'clang uz' === ctx.match[0] ? 'uz' : 'ru'
   const chatId = ctx.callbackQuery.from.id
   const callbackQueryId = ctx.callbackQuery.id
   ProfileModel.findOneAndUpdate({ user_id: chatId }, { $set: { lang: lang } })
@@ -301,7 +302,7 @@ bot.action(["clang uz", "clang ru"], async ctx => {
   await axios.get()
 })
 
-bot.on("text", ctx => {
+bot.on('text', ctx => {
   bot.telegram.forwardMessage(
     logChatId,
     ctx.message.from.id,
@@ -310,12 +311,12 @@ bot.on("text", ctx => {
 })
 
 function chooseLang(ctx) {
-  ctx.reply("Kerakli tilni tanlang: \n\nВыбрать язык:", {
+  ctx.reply('Kerakli tilni tanlang: \n\nВыбрать язык:', {
     reply_markup: {
       inline_keyboard: [
         [
-          { text: "Uzbek", callback_data: "lang uz" },
-          { text: "Русский", callback_data: "lang ru" },
+          { text: 'Uzbek', callback_data: 'lang uz' },
+          { text: 'Русский', callback_data: 'lang ru' },
         ],
       ],
     },
@@ -326,12 +327,12 @@ function selectRegion(ctx, lang, backB) {
   const region = Object.keys(regions)
   const regionru = Object.keys(regionsru)
   const reg = [region, regionru]
-  const keyBoard = buttons(reg, "region", lang)
+  const keyBoard = buttons(reg, 'region', lang)
   keyBoard[keyBoard.length - 1].push({
-    text: lang === "ru" ? "Город Ташкент" : "Toshkent shaxri",
+    text: lang === 'ru' ? 'Город Ташкент' : 'Toshkent shaxri',
     callback_data: `province Toshkent,${lang}`,
   })
-  if (!backB) keyBoard.push(backButton("choose lang", lang))
+  if (!backB) keyBoard.push(backButton('choose lang', lang))
 
   ctx.reply(botmsg[lang].choose_region, {
     reply_markup: {
@@ -342,9 +343,9 @@ function selectRegion(ctx, lang, backB) {
 
 function buttons(region, alias, lang) {
   let sum = []
-  let reg = lang === "uz" ? region[0] : region[1]
+  let reg = lang === 'uz' ? region[0] : region[1]
   region = region[0]
-  let cbData = alias ?? "province"
+  let cbData = alias ?? 'province'
 
   for (let i = 0; i < region.length; i += 2)
     region[i + 1]
@@ -375,13 +376,13 @@ function backButton(place, lang) {
   return [{ text: botmsg[lang].go_back, callback_data: place }]
 }
 
-bot.launch({
-  webhook: {
-    domain: `${tgboturl}/bot${token}`,
-    port,
-  },
-})
-
+// bot.launch({
+//   webhook: {
+//     domain: `${tgboturl}/bot${token}`,
+//     port,
+//   },
+// })
+bot.launch()
 // Enable graceful stop
-process.once("SIGINT", () => bot.stop("SIGINT"))
-process.once("SIGTERM", () => bot.stop("SIGTERM"))
+process.once('SIGINT', () => bot.stop('SIGINT'))
+process.once('SIGTERM', () => bot.stop('SIGTERM'))
