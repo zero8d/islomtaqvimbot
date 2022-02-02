@@ -191,7 +191,7 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
     const data = `
   ${botmsg[lang].respm.date}: ${resData[i].date.split(',')[0]}
   ${botmsg[lang].respm.weekday}: ${
-      botmsg[lang].respm.weekdays[resData[i].weekday]
+      botmsg[lang].respm.weekdays[resData[i].weekday.toLowerCase()]
     }
   ${botmsg[lang].respm.tong}: ${resData[i].times.tong_saharlik}
   ${botmsg[lang].respm.quyosh}: ${resData[i].times.quyosh}
