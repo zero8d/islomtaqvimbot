@@ -200,7 +200,7 @@ bot.hears([botmsg.uz.week, botmsg.ru.week], async ctx => {
   ${botmsg[lang].respm.shom}: ${resData[i].times.shom_iftor}
   ${botmsg[lang].respm.hufton}: ${resData[i].times.hufton}
     `
-    datas.push(data)
+    datas = [...datas, data]
   }
   let resp = datas.join('\n')
   ctx.reply(resp)
